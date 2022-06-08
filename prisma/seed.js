@@ -36,6 +36,26 @@ async function seed() {
     ],
   });
 
+  const createdPosts = await prisma.post.createMany({
+    data: [
+      {
+        post_title: "My rainjacket",
+        post_content:
+          "hahahahahahahahaahahahahahadfsdfjsdlfkjsdlkfjslkdfjskldfjlsdjf",
+        isPublished: false,
+        post_image: "http://www.dofjadlkfa.jpg",
+        user_id: 1,
+      },
+      {
+        post_title: "PIZZA",
+        post_content:
+          "hahahahahahahahaa yum yum yum sdfjsdlfkjsdlkfjslkdfjskldfjlsdjf",
+        isPublished: true,
+        user_id: 2,
+      },
+    ],
+  });
+
   // Don't edit any of the code below this line
   process.exit(0);
 }

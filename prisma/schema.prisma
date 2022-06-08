@@ -20,6 +20,7 @@ model User {
   birthday   DateTime  
   country    String
   profile    Profile?
+  post       Post[]
 }
 
 model Profile {
@@ -33,3 +34,14 @@ model Profile {
   user_id         Int
 }
 
+model Post {
+  id              Int      @id @default(autoincrement())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  post_title      String   @unique @db.VarChar(150)
+  post_content    String   @db.VarChar(280)
+  isPublished     Boolean
+  post_image      String?   @db.VarChar
+  User            User      @relation(fields: [user_id], references: [id])
+  user_id         Int
+}
