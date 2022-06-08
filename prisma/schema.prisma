@@ -12,11 +12,24 @@ datasource db {
 }
 
 model User {
-  id         Int       @id @default(autoincrement())
-  username   String     @unique @db.VarChar(10)
-  email      String     @unique @db.VarChar
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  username   String   @unique @db.VarChar(10)
+  email      String   @unique @db.VarChar
   birthday   DateTime  
   country    String
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
+  profile    Profile?
 }
+
+model Profile {
+  id              Int      @id @default(autoincrement())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  username        String   @unique @db.VarChar(10)
+  profile_content String   @db.VarChar(120)
+  profile_image   String   @db.VarChar
+  User            User     @relation(fields: [user_id], references: [id])
+  user_id         Int
+}
+

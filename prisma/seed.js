@@ -19,9 +19,22 @@ async function seed() {
     ],
   });
 
-  console.log(`${createdUsers.count} users created`, createdUsers);
-
-  // Add your code here
+  const createdProfiles = await prisma.profile.createMany({
+    data: [
+      {
+        username: "alicemart",
+        profile_content: "Hi, I'm Alice and I'm learning to code now!",
+        profile_image: "http://www.dofjadlkfa.jpg",
+        user_id: 1,
+      },
+      {
+        username: "HiBobby",
+        profile_content: "Hi, I'm Bobby and I love pizza!",
+        profile_image: "http://www.dofjadlkfa.jpg",
+        user_id: 2,
+      },
+    ],
+  });
 
   // Don't edit any of the code below this line
   process.exit(0);
