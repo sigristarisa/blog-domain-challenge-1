@@ -68,6 +68,12 @@ async function seed() {
         user_id: 2,
         post_id: 2,
       },
+      {
+        comment_content: "dlskfjsdlfkjsldkfjsldjsdklfj",
+        user_id: 1,
+        post_id: 2,
+        parent_id: 2,
+      },
     ],
   });
 

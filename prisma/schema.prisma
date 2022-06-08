@@ -50,6 +50,7 @@ model Post {
 
 model Comment {
   id              Int      @id @default(autoincrement())
+  parent_id       Int?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   comment_content String   @db.VarChar(250)
@@ -57,4 +58,6 @@ model Comment {
   user_id         Int
   post            Post     @relation(fields: [post_id], references: [id])
   post_id         Int
+  reply           Comment? @relation("commentsReplies", fields: [parent_id], references: [id])
+  replies         Comment[]  @relation("commentsReplies")
 }
