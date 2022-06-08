@@ -21,6 +21,7 @@ model User {
   country    String
   profile    Profile?
   post       Post[]
+  comment    Comment[]
 }
 
 model Profile {
@@ -44,4 +45,16 @@ model Post {
   post_image      String?   @db.VarChar
   User            User      @relation(fields: [user_id], references: [id])
   user_id         Int
+  comment         Comment[]
+}
+
+model Comment {
+  id              Int      @id @default(autoincrement())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  comment_content String   @db.VarChar(250)
+  User            User     @relation(fields: [user_id], references: [id])
+  user_id         Int
+  post            Post     @relation(fields: [post_id], references: [id])
+  post_id         Int
 }

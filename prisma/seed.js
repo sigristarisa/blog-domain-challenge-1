@@ -56,6 +56,21 @@ async function seed() {
     ],
   });
 
+  const createdComments = await prisma.comment.createMany({
+    data: [
+      {
+        comment_content: "dlskfjsdlfkjsldkfjsldjsdklfj",
+        user_id: 1,
+        post_id: 1,
+      },
+      {
+        comment_content: "dlskfjsdlfkjsldkfjsldjsdklfj",
+        user_id: 2,
+        post_id: 2,
+      },
+    ],
+  });
+
   // Don't edit any of the code below this line
   process.exit(0);
 }
